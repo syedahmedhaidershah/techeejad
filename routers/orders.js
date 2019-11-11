@@ -10,14 +10,7 @@ const placeOrder = async (req, res, next) => {
 
 const retreiveOrder = async (req, res, next) => {
     const found = await col.find({
-        contact: {
-            $in: [
-                req.body.contact,
-                '0'.concat(req.body.contact),
-                '+92'.concat(req.body.contact),
-                req.body.contact.substr(1)
-            ]
-        }
+        contact: req.body.contact
     }).toArray();
 
     res.send({ error: false, message: found });
