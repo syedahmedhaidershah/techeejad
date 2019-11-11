@@ -15,7 +15,7 @@ const retreiveOrder = async (req, res, next) => {
                 req.body.contact,
                 '0'.concat(req.body.contact),
                 '+92'.concat(req.body.contact),
-                req.body.substr(1)
+                req.body.contact.substr(1)
             ]
         }
     }).toArray();
