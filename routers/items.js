@@ -1,12 +1,14 @@
 let col = null;
 
 const getAll = async (req, res, next) => {
-    const list = await db.collection('items').find({}).toArray();
+    const list = await col.find({}).toArray();
     res.send({ error: false, message: list });
 };
 
 module.exports = (router, io) => {
-    col = db.collection(__filename.split('\\').splice(-1)[0].split('.')[0]);
-    console.log(__filename.split('\/').splice(-1)[0].split('.')[0]);
+    col = (__filename.includes('\/')) ?
+        db.collection(__filename.split('\/').splice(-1)[0].split('.')[0]) :
+        db.collection(__filename.split('\\').splice(-1)[0].split('.')[0]);
+
     router.post('/getall', getAll);
 };
