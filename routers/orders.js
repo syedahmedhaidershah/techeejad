@@ -15,7 +15,7 @@ const retreiveOrder = async (req, res, next) => {
             '0'.concat(req.body.contact),
             '+92'.concat(req.body.contact),
         ]
-    });
+    }).toArray();
 
     res.send({ error: false, message: found });
 };
