@@ -11,6 +11,12 @@ const insertOne = async (req, res, next) => {
     res.send({ error: false, message: inserted });
 }
 
+const insertMany = async (req, res, next) => {
+    const inserted = await col.insertMany(req.body.message);
+
+    res.send({ error: false, message: inserted });
+};
+
 module.exports = (router, io) => {
     col = (__filename.includes('\/')) ?
         db.collection(__filename.split('\/').splice(-1)[0].split('.')[0]) :
@@ -19,4 +25,6 @@ module.exports = (router, io) => {
     router.post('/getall', getAll);
 
     router.post('/insert', insertOne);
+
+    router.post('/insertmany', insertMany);
 };
