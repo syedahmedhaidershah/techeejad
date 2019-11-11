@@ -1,6 +1,8 @@
 let col = null;
 
 const placeOrder = async (req, res, next) => {
+    Object.assign(req.body, {status: 0, called: 0});
+
     const inserted = await col.insertOne(req.body);
 
     console.log(inserted);
