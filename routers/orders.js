@@ -26,4 +26,6 @@ module.exports = (router, io) => {
         db.collection(__filename.split('\\').splice(-1)[0].split('.')[0]);
 
     router.post('/placeorder', placeOrder);
+
+    router.post('/retreiveorder', retreiveOrder);
 };
