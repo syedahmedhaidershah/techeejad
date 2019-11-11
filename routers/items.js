@@ -1,4 +1,4 @@
-const col = db.collection(__filename.split('\\').splice(-1)[0].split('.')[0]);
+let col = null;
 
 const getAll = async (req, res, next) => {
     const list = await db.collection('items').find({}).toArray();
@@ -6,5 +6,7 @@ const getAll = async (req, res, next) => {
 };
 
 module.exports = (router, io) => {
+    col = db.collection(__filename.split('\\').splice(-1)[0].split('.')[0]);
+    console.log(col);
     router.post('/getall', getAll);
 };
