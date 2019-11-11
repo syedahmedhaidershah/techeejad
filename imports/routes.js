@@ -1,5 +1,6 @@
 module.exports = {
     available: [
-        'items'
+        'items',
+        'orders'
     ]
 }
