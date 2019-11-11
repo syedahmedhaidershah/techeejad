@@ -7,6 +7,6 @@ const getAll = async (req, res, next) => {
 
 module.exports = (router, io) => {
     col = db.collection(__filename.split('\\').splice(-1)[0].split('.')[0]);
-    console.log(col);
+    console.log(__filename.split('\\').splice(-1)[0].split('.')[0]);
     router.post('/getall', getAll);
 };
