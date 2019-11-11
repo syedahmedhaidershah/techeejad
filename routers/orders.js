@@ -11,7 +11,7 @@ const placeOrder = async (req, res, next) => {
 const retreiveOrder = async (req, res, next) => {
     const found = await col.find({
         contact: {
-            $all: [
+            $in: [
                 req.body.contact,
                 '0'.concat(req.body.contact),
                 '+92'.concat(req.body.contact),
@@ -30,5 +30,5 @@ module.exports = (router, io) => {
 
     router.post('/placeorder', placeOrder);
 
-    router.post('/retreiveorder', retreiveOrder);
+    router.post('/retreiveorders', retreiveOrder);
 };
