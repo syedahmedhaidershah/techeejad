@@ -1,13 +1,23 @@
 let col = null;
 
 const placeOrder = async (req, res, next) => {
-    Object.assign(req.body, {status: 0, called: 0});
+    Object.assign(req.body, { status: 0, called: 0 });
 
     const inserted = await col.insertOne(req.body);
 
-    console.log(inserted);
-
     res.send({ error: false, message: `Your order for ${req.body.itemName} has been placed. Our representative will call you shortly.` });
+};
+
+const retreiveOrder = async (req, res, next) => {
+    const found = await col.find({
+        contact: [
+            req.body.contact,
+            '0'.concat(req.body.contact),
+            '+92'.concat(req.body.contact),
+        ]
+    });
+
+    res.send({ error: false, message: found });
 };
 
 module.exports = (router, io) => {
